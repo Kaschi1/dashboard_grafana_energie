@@ -77,7 +77,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
@@ -139,7 +141,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
@@ -201,7 +205,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
@@ -282,7 +288,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -347,7 +355,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
@@ -666,7 +676,7 @@
             "uid": "eetzzgckh0lxcf"
           },
           "alias": "Raw (integral)",
-          "query": "SELECT integral(\"total_act_power\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "query": "SELECT integral(\"$feld_raw\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series"
@@ -735,7 +745,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -800,7 +812,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
@@ -957,7 +971,7 @@
             "uid": "eetzzgckh0lxcf"
           },
           "alias": "Raw (integral)",
-          "query": "SELECT integral(\"total_act_power\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "query": "SELECT integral(\"$feld_raw\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
           "rawQuery": true,
           "refId": "C",
           "resultFormat": "time_series"
@@ -1084,7 +1098,7 @@
         "overrides": []
       },
       "options": {
-        "content": "## Vorgehen\n\n1. **Abschnitt 1** zeigt, welche Messungen pro Retention-Policy existieren. Wenn in `agg_6m_15min` oder `agg_inf_1d` für Energy-HA nichts auftaucht, schreibt der Aggregations-Job keine Energie-Daten - dann muss der Job prüfen/korrigiert werden (wie bei `heatpump` schon vorhanden: heatpump_15min / heatpump_daily).\n2. In den Variablen oben **$quelle15 / $feld15** und **$quelle1d / $feld1d** die zu prüfende Messung und das Feld wählen (z. B. power_total_15min, Feld mean_value).\n3. **$quelle_raw** auf die zugehörige Raw-Messung setzen (z. B. power_total), damit der Plausibilitäts-Vergleich passt.\n4. Zeitraum auf **letzte 30 Tage** oder länger stellen. Die Panels 'Punkte pro Tag' und 'Letzter Datenpunkt' zeigen sofort, ab wann Daten fehlen.\n5. Der Vergleich 'Raw vs. 15min vs. Tages-Aggregat' muss im Overlay (letzte 7 Tage) ähnliche Werte liefern - nur dann stimmt die Aggregation.\n\n**Hintergrund:** Das Energie-Dashboard 'Energieübersicht' fragt alle Energie-Panels aus `raw_7d` ab (Retention ~7 Tage). Deshalb sind ältere Daten dort leer, während das Panasonic-Dashboard über die Variable `$quelle` auf `agg_6m_15min` / `agg_inf_1d` umschaltet.",
+        "content": "## Vorgehen\n\n1. **Abschnitt 1** zeigt, welche Messungen pro Retention-Policy existieren. Wenn in `agg_6m_15min` oder `agg_inf_1d` für Energy-HA nichts auftaucht, schreibt der Aggregations-Job keine Energie-Daten - dann muss der Job prüfen/korrigiert werden (wie bei `heatpump` schon vorhanden: heatpump_15min / heatpump_daily).\n2. In den Variablen oben **$quelle15 / $feld15** und **$quelle1d / $feld1d** die zu prüfende Messung und das Feld wählen (z. B. power_total_15min, Feld mean_value).\n3. **$quelle_raw** auf die zugehörige Raw-Messung setzen (z. B. power_total), damit der Plausibilitäts-Vergleich passt.\n4. Zeitraum auf **letzte 30 Tage** oder länger stellen. Die Panels 'Punkte pro Tag' und 'Letzter Datenpunkt' zeigen sofort, ab wann Daten fehlen.\n5. Der Vergleich 'Raw vs. 15min vs. Tages-Aggregat' muss im Overlay (letzte 7 Tage) ähnliche Werte liefern - nur dann stimmt die Aggregation.\n\n**Hintergrund:** Das Energie-Dashboard 'Energieübersicht v3.2' mischt über die Variable `$quelle` zwischen `agg_6m_15min` (15 Minuten, ca. 6 Monate Retention) und `agg_inf_1d` (Tage, unbegrenzt). Der Raw-Vergleich hier nutzt `raw_7d` (Retention ~7 Tage) und ist daher nur für kurze Zeiträume aussagekräftig.",
         "mode": "markdown"
       },
       "pluginVersion": "12.1.0"
@@ -1093,7 +1107,11 @@
   "preload": true,
   "refresh": "",
   "schemaVersion": 41,
-  "tags": ["energy", "diagnose", "influxdb"],
+  "tags": [
+    "energy",
+    "diagnose",
+    "influxdb"
+  ],
   "templating": {
     "list": [
       {
@@ -1216,6 +1234,29 @@
         "includeAll": false,
         "hide": 0,
         "description": "Zugehörige Raw-Messung für den Plausibilitäts-Vergleich."
+      },
+      {
+        "type": "query",
+        "name": "feld_raw",
+        "label": "Feld (raw)",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW FIELD KEYS FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\"",
+        "query": "SHOW FIELD KEYS FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\"",
+        "regex": "/^(mean_value|daily_mean_value|numValue|total_act_power)$/",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [],
+        "description": "Feld der Raw-Messung (automatisch aus der Messung gelesen) - wird für den integral()-Vergleich verwendet."
       }
     ]
   },
@@ -1227,6 +1268,6 @@
   "timezone": "browser",
   "title": "Energie-Daten Diagnose",
   "uid": "energy-diagnose",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

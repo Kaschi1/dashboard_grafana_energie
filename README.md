@@ -30,7 +30,9 @@ Wichtige Messungen: `power_total`, `solar_total`, `Ladegerät_total` (raw) → `
 ## Wichtige Hinweise
 
 - **Solar-Vorzeichen:** Der Shelly speichert Solarerzeugung negativ; die Dashboards drehen das Vorzeichen in den Queries (`* -1`).
-- **Datenquelle-Variable:** Bei Zeiträumen bis ~6 Monate „15 Minuten" wählen, darüber „Tage" (15-min-Daten werden nach 6 Monaten gelöscht).
+- **Datenquelle-Variable:** Default ist jetzt **„Tage“** (`agg_inf_1d`, unbegrenzt). Bei **„15 Minuten“** (`agg_6m_15min`) sind Zeiträume über ~6 Monate unvollständig, weil die 15-min-Daten nach 6 Monaten gelöscht werden – deshalb ist der Default-Zeitraum auf `now-6M` gesetzt.
+- **Momentanwerte:** Werden nur berücksichtigt, wenn der letzte Datenpunkt max. 5 Minuten alt ist (`now() - 5m`), damit keine veralteten Werte angezeigt werden.
+- **Preis-Variablen:** Strompreis / Einspeisevergütung immer mit **Punkt** eingeben (z. B. `0.30`, nicht `0,30`), sonst sind die Kosten-Panels leer.
 - **Autarkie/Eigenverbrauchsquote:** Ohne Solar im Zeitraum zeigt das Panel „No data" (Division durch 0).
 
 ## Diagnose-Script
