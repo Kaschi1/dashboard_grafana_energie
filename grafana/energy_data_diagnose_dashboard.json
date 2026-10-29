@@ -1,0 +1,1232 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "panels": [],
+      "title": "1) Vorhandene Messungen entdecken",
+      "type": "row"
+    },
+    {
+      "id": 2,
+      "type": "table",
+      "title": "Messungen in raw_7d (Energy-HA)",
+      "description": "Listet alle Messungen im Raw-Retention. Hier sollten power_total, solar_total, Ladegerät_total etc. auftauchen.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"raw_7d\")",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "table",
+      "title": "Messungen in agg_6m_15min (Energy-HA)",
+      "description": "Hier muss die 15-Minuten-Aggregation auftauchen (z. B. power_total_15min oder energy_15min). Wenn hier nichts steht, schreibt der Aggregations-Job keine 15-min-Daten für Energy-HA.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 1,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_6m_15min\")",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "table",
+      "title": "Messungen in agg_inf_1d (Energy-HA)",
+      "description": "Hier muss die Tages-Aggregation auftauchen (z. B. power_total_daily oder energy_daily). Wenn hier nichts steht, gibt keine Tageswerte für Energy-HA.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 1,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_inf_1d\")",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 5,
+      "panels": [],
+      "title": "2) 15-Minuten-Daten prüfen ($quelle15)",
+      "type": "row"
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Datenpunkte 15min im Zeitraum",
+      "description": "Anzahl Punkte der gewählten 15-min-Messung im gewählten Zeitraum. 0 = keine Daten vorhanden.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 4,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SELECT count(\"$feld15\") FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "table",
+      "title": "Letzter 15-min-Datenpunkt",
+      "description": "Zeigt den zeitstempel des letzten vorhandenen Punktes. Wenn er älter als ein paar Tage ist, läuft die Aggregation nicht (mehr). Zeitraum z. B. auf 'letzte 6 Monate' stellen.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 8,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SELECT \"$feld15\" FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" ORDER BY time DESC LIMIT 5",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Punkte pro Tag (15min)",
+      "description": "Bei lückenloser 15-min-Aggregation sollten ~96 Punkte pro Tag auftauchen. Lücken/Nuller bedeuten fehlende Tage.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "Punkte/Tag",
+          "query": "SELECT count(\"$feld15\") FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "15-min-Werte im Verlauf",
+      "description": "Rohansicht der aggregierten 15-min-Werte. Zum Prüfen, ob Plausibilität und Skalierung (W statt kW) stimmen.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "$quelle15",
+          "query": "SELECT mean(\"$feld15\") FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Energie pro Tag: Raw vs. 15min-Aggregat",
+      "description": "Vergleich: Tagesenergie aus Raw-Daten (integral, nur rote Linie bis Tag 7 vorhanden) vs. Summe der 15-min-Mittelwerte * 0,25h / 1000. Wenn die blaue Linie über Tag 7 hinaus läuft und beide Linien im Overlay ähnlich sind, ist die 15-min-Aggregation korrekt.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kwh"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Raw (integral)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "15min-Aggregat",
+          "query": "SELECT sum(\"$feld15\") * 0.25 / 1000 FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "Raw (integral)",
+          "query": "SELECT integral(\"total_act_power\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 11,
+      "panels": [],
+      "title": "3) Tages-Daten prüfen ($quelle1d)",
+      "type": "row"
+    },
+    {
+      "id": 12,
+      "type": "stat",
+      "title": "Datenpunkte daily im Zeitraum",
+      "description": "Anzahl Punkte der gewählten Tages-Messung im gewählten Zeitraum. 0 = keine Daten vorhanden.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 4,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 7
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SELECT count(\"$feld1d\") FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "table",
+      "title": "Letzter Tages-Datenpunkt",
+      "description": "Zeigt die letzten Tage mit Werten. Wenn der letzte Eintrag älter ist, läuft die Tages-Aggregation nicht (mehr).",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 25,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "query": "SELECT \"$feld1d\" FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\" ORDER BY time DESC LIMIT 5",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "Energie pro Tag: Raw vs. 15min vs. Tages-Aggregat",
+      "description": "Dreifacher Vergleich pro Tag: Raw integral (rot, nur 7 Tage), 15-min-Summe * 0,25h (blau) und Tagesmittel * 24h (grün, entspricht dem Muster 'daily_mean_value * 24' aus dem Panasonic-Dashboard). Alle drei sollten im 7-Tage-Overlay ähnlich sein.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 25,
+        "w": 12,
+        "h": 9
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 30,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kwh"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Raw (integral)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tages-Aggregat"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "Tages-Aggregat",
+          "query": "SELECT \"$feld1d\" * 24 / 1000 FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "15min-Aggregat",
+          "query": "SELECT sum(\"$feld15\") * 0.25 / 1000 FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "Raw (integral)",
+          "query": "SELECT integral(\"total_act_power\", 1h) / 1000 FROM \"Energy-HA\".\"raw_7d\".\"$quelle_raw\" WHERE $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "timeseries",
+      "title": "Tages-Werte im Verlauf (Lücken erkennen)",
+      "description": "Pro Tag ein Balken (Mittelwert des Tages). Fehlende Tage = fehlende Tages-Aggregation.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 29,
+        "w": 12,
+        "h": 9
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "alias": "$quelle1d",
+          "query": "SELECT \"$feld1d\" FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 16,
+      "panels": [],
+      "title": "4) Info",
+      "type": "row"
+    },
+    {
+      "id": 17,
+      "type": "text",
+      "title": "So benutzt du dieses Dashboard",
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 24,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "content": "## Vorgehen\n\n1. **Abschnitt 1** zeigt, welche Messungen pro Retention-Policy existieren. Wenn in `agg_6m_15min` oder `agg_inf_1d` für Energy-HA nichts auftaucht, schreibt der Aggregations-Job keine Energie-Daten - dann muss der Job prüfen/korrigiert werden (wie bei `heatpump` schon vorhanden: heatpump_15min / heatpump_daily).\n2. In den Variablen oben **$quelle15 / $feld15** und **$quelle1d / $feld1d** die zu prüfende Messung und das Feld wählen (z. B. power_total_15min, Feld mean_value).\n3. **$quelle_raw** auf die zugehörige Raw-Messung setzen (z. B. power_total), damit der Plausibilitäts-Vergleich passt.\n4. Zeitraum auf **letzte 30 Tage** oder länger stellen. Die Panels 'Punkte pro Tag' und 'Letzter Datenpunkt' zeigen sofort, ab wann Daten fehlen.\n5. Der Vergleich 'Raw vs. 15min vs. Tages-Aggregat' muss im Overlay (letzte 7 Tage) ähnliche Werte liefern - nur dann stimmt die Aggregation.\n\n**Hintergrund:** Das Energie-Dashboard 'Energieübersicht' fragt alle Energie-Panels aus `raw_7d` ab (Retention ~7 Tage). Deshalb sind ältere Daten dort leer, während das Panasonic-Dashboard über die Variable `$quelle` auf `agg_6m_15min` / `agg_inf_1d` umschaltet.",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.1.0"
+    }
+  ],
+  "preload": true,
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": ["energy", "diagnose", "influxdb"],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "quelle15",
+        "label": "Messung (15min)",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_6m_15min\")",
+        "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_6m_15min\")",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [],
+        "description": "Alle Messungen im 15-Minuten-Retention. Wenn die Liste leer ist, existieren keine 15-min-Aggregate für Energy-HA."
+      },
+      {
+        "type": "query",
+        "name": "feld15",
+        "label": "Feld (15min)",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW FIELD KEYS FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\"",
+        "query": "SHOW FIELD KEYS FROM \"Energy-HA\".\"agg_6m_15min\".\"$quelle15\"",
+        "regex": "/^(mean_value|daily_mean_value|numValue|total_act_power)$/",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [],
+        "description": "Feld der 15-min-Messung (automatisch aus der Messung gelesen)."
+      },
+      {
+        "type": "query",
+        "name": "quelle1d",
+        "label": "Messung (Tage)",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_inf_1d\")",
+        "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"agg_inf_1d\")",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [],
+        "description": "Alle Messungen im Tages-Retention. Wenn die Liste leer ist, existieren keine Tages-Aggregate für Energy-HA."
+      },
+      {
+        "type": "query",
+        "name": "feld1d",
+        "label": "Feld (Tage)",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW FIELD KEYS FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\"",
+        "query": "SHOW FIELD KEYS FROM \"Energy-HA\".\"agg_inf_1d\".\"$quelle1d\"",
+        "regex": "/^(daily_mean_value|mean_value|numValue|total_act_power)$/",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [],
+        "description": "Feld der Tages-Messung (automatisch aus der Messung gelesen)."
+      },
+      {
+        "type": "custom",
+        "name": "quelle_raw",
+        "label": "Raw-Messung (Vergleich)",
+        "query": "power_total : power_total,solar_total : solar_total,Ladegerät_total : Ladegerät_total",
+        "current": {
+          "text": "power_total",
+          "value": "power_total"
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "power_total",
+            "value": "power_total"
+          },
+          {
+            "selected": false,
+            "text": "solar_total",
+            "value": "solar_total"
+          },
+          {
+            "selected": false,
+            "text": "Ladegerät_total",
+            "value": "Ladegerät_total"
+          }
+        ],
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "description": "Zugehörige Raw-Messung für den Plausibilitäts-Vergleich."
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Energie-Daten Diagnose",
+  "uid": "energy-diagnose",
+  "version": 1,
+  "weekStart": ""
+}
