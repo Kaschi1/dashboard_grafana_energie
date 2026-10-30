@@ -433,8 +433,8 @@
           "type": "influxdb",
           "uid": "eetzzgckh0lxcf"
         },
-        "definition": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"raw_7d\")",
-        "description": "Messung in Energy-HA/raw_7d - steuert die wiederholten Gauge- und Chart-Panels.",
+        "definition": "SHOW MEASUREMENTS ON \"Energy-HA\"",
+        "description": "Raw-Messungen in Energy-HA (nur die, die auch in raw_7d liegen, per Regex gefiltert: power_total, solar_total, Ladegerät_total). Steuert die wiederholten Gauge- und Chart-Panels. Hinweis: 'SHOW MEASUREMENTS ... WITH IN (...)' liefert in Grafana keine sauberen Namen (Wert waere 'Energy-HA, raw_7d') und fuehrt zu 'invalid measurement'.",
         "hide": 0,
         "includeAll": false,
         "label": "Messung (Energy-HA, raw_7d)",
@@ -457,9 +457,10 @@
             "value": "Ladegerät_total"
           }
         ],
-        "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"raw_7d\")",
+        "query": "SHOW MEASUREMENTS ON \"Energy-HA\"",
         "refresh": 1,
-        "type": "query"
+        "type": "query",
+        "regex": "/^(power_total|solar_total|Ladegerät_total)$/"
       },
       {
         "current": {
@@ -471,7 +472,7 @@
           "uid": "eetzzgckh0lxcf"
         },
         "definition": "SHOW FIELD KEYS FROM \"Energy-HA\".\"raw_7d\".\"$messung\"",
-        "description": "Numerisches Feld der gewählten Messung.",
+        "description": "Numerisches Feld der gewählten Messung (SHOW FIELD KEYS). Bei den Shelly-Raw-Messungen ist das 'total_act_power'.",
         "hide": 0,
         "includeAll": false,
         "label": "Feld",
