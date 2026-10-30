@@ -1,0 +1,504 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external-link-alt",
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Zur Energieübersicht v3.2",
+      "tooltip": "Haupt-Dashboard (Kennzahlen, Verlauf, Tageswerte)",
+      "type": "link",
+      "url": "/d/energy-overview-v3"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "panels": [],
+      "title": "Aktueller Verbrauch pro Messstelle (Gauge, raw_7d)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "description": "Wiederholt sich für jede Messung in `Energy-HA.raw_7d` (Variable `$messung`). Wert nur gültig, wenn der letzte Datenpunkt max. 5 Minuten alt ist. Hinweis: `solar_total` liefert der Shelly negativ (Erzeugung).",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": null,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 3000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 2,
+      "maxPerRow": 4,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.1.0",
+      "repeat": "messung",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "hide": false,
+          "query": "SELECT last(\"$feld\") FROM \"Energy-HA\".\"raw_7d\".\"$messung\" WHERE time > now() - 5m",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "$messung",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "description": "Wärmepumpe (Panasonic Aquarea), Topic Watt/1. Wert nur gültig, wenn der letzte Datenpunkt max. 5 Minuten alt ist.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": null,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2500
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 3,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "hide": false,
+          "query": "SELECT last(\"numValue\") FROM \"heatpump\".\"raw_7d\".\"heatpump\" WHERE \"topic\" = 'Watt/1' AND time > now() - 5m",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Wärmepumpe (Watt/1)",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 4,
+      "panels": [],
+      "title": "Verlauf (raw_7d – max. 7 Tage)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "description": "Wiederholt sich für jede Messung in `Energy-HA.raw_7d`. Wegen der 7-Tage-Retention ist der Verlauf auf ~7 Tage begrenzt. Hinweis: `solar_total` ist negativ (Erzeugung).",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.8,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 5,
+      "maxPerRow": 1,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "repeat": "messung",
+      "repeatDirection": "v",
+      "targets": [
+        {
+          "alias": "$messung",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"$feld\") FROM \"Energy-HA\".\"raw_7d\".\"$messung\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Verlauf: $messung",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "eetzzgckh0lxcf"
+      },
+      "description": "Verlauf der Wärmepumpen-Leistung (Topic Watt/1) aus raw_7d.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "purple"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.8,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "alias": "Wärmepumpe",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "eetzzgckh0lxcf"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"numValue\") FROM \"heatpump\".\"raw_7d\".\"heatpump\" WHERE \"topic\" = 'Watt/1' AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Verlauf: Wärmepumpe (Watt/1)",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 41,
+  "tags": [
+    "energy",
+    "gauge",
+    "verbrauch",
+    "shelly",
+    "heatpump"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "power_total",
+          "value": "power_total"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"raw_7d\")",
+        "description": "Messung in Energy-HA/raw_7d - steuert die wiederholten Gauge- und Chart-Panels.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Messung (Energy-HA, raw_7d)",
+        "multi": false,
+        "name": "messung",
+        "options": [
+          {
+            "selected": true,
+            "text": "power_total",
+            "value": "power_total"
+          },
+          {
+            "selected": false,
+            "text": "solar_total",
+            "value": "solar_total"
+          },
+          {
+            "selected": false,
+            "text": "Ladegerät_total",
+            "value": "Ladegerät_total"
+          }
+        ],
+        "query": "SHOW MEASUREMENTS ON \"Energy-HA\" WITH IN (\"raw_7d\")",
+        "refresh": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "total_act_power",
+          "value": "total_act_power"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "eetzzgckh0lxcf"
+        },
+        "definition": "SHOW FIELD KEYS FROM \"Energy-HA\".\"raw_7d\".\"$messung\"",
+        "description": "Numerisches Feld der gewählten Messung.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Feld",
+        "multi": false,
+        "name": "feld",
+        "options": [
+          {
+            "selected": true,
+            "text": "total_act_power",
+            "value": "total_act_power"
+          }
+        ],
+        "query": "SHOW FIELD KEYS FROM \"Energy-HA\".\"raw_7d\".\"$messung\"",
+        "refresh": 1,
+        "regex": "/^(total_act_power|numValue|mean_value)$/",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Energie Verbrauch aktuell (Gauges)",
+  "uid": "energy-verbrauch-gauge",
+  "version": 1,
+  "weekStart": ""
+}

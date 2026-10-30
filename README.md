@@ -9,6 +9,7 @@ Grafana-Dashboards und Tools für die Energie-Übersicht (Shelly Pro 3EM, Wallbo
 | `grafana/energy_dashboard_v3.2.json` | **Energieübersicht v3.2** – Kennzahlen (Netzbezug, Einspeisung, Solar, Wallbox, Wärmepumpe, Hausverbrauch, Eigenverbrauch, Autarkie, Kosten) mit umschaltbarer Datenquelle (15-Minuten- oder Tages-Aggregat), Momentanwerte aus Rohdaten, Leistungsverlauf und Tages-Energie über unbegrenzte Historie |
 | `grafana/energy_data_diagnose_dashboard.json` | **Energie-Daten Diagnose** – prüft, ob 15-Minuten- und Tages-Aggregate vorhanden und plausibel sind (Punkte pro Tag, letzter Datenpunkt, Raw-vs-Aggregat-Vergleich) |
 | `scripts/influx_analyse.sh` | SSH-Diagnose-Script für die InfluxDB (Retention Policies, Continuous Queries, Messungen, Shards, Logs) |
+| `grafana/Enery_data_verbrauch_gauge.json` | **Energie Verbrauch aktuell (Gauges)** – aktueller Verbrauch pro Messstelle als Gauge (wiederholt über alle Messungen in `raw_7d`, inkl. Wärmepumpe Watt/1) plus Verlauf-Charts (7-Tage-Retention) |
 
 ## Installation
 
